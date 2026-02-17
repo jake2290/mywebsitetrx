@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TRX VIP BOT - TELEGRAM & ADMIN LINK</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<style>
+:root {
+  --bg: #050810;
+  --card-bg: rgba(18, 24, 43, 0.95);
+  --neon-blue: #00d2ff;
+  --neon-pink: #ff007f;
+  --neon-gold: #f1c40f;
+  --win-color: #00ff88;
+  --lose-color: #ff3e3e;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
+body {
+  min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  background: radial-gradient(circle at bottom, #101835 0%, var(--bg) 80%);
+  font-family: 'Segoe UI', sans-serif; color: #fff; padding: 20px;
+}
+#loginContainer { display: flex; flex-direction: column; align-items: center; width: 340px; }
+#loginPage {
+  width: 100%; background: var(--card-bg); padding: 40px 20px; border-radius: 30px; 
+  border: 1px solid rgba(0, 210, 255, 0.3); box-shadow: 0 0 30px rgba(0, 210, 255, 0.2); text-align: center;
+}
+input[type="text"] {
+  width: 100%; padding: 15px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(0,0,0,0.5); color: var(--neon-gold); text-align: center; font-size: 20px; margin-bottom: 15px; outline: none;
+}
+.btn { width: 100%; padding: 15px; border-radius: 15px; border: none; font-weight: bold; cursor: pointer; transition: 0.3s; }
+.login-btn { background: linear-gradient(90deg, var(--neon-blue), #0080ff); color: #000; margin-bottom: 10px; }
+.req-btn { background: none; border: 1px solid var(--neon-gold); color: var(--neon-gold); font-size: 13px; }
+
+/* Admin Link Section */
+#adminActionBox { display: none; margin-top: 20px; animation: fadeIn 0.4s; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 15px; border: 1px dashed var(--win-color); }
+.admin-link-btn {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  background: #229ED9; color: #fff; text-decoration: none;
+  padding: 12px; border-radius: 10px; font-size: 14px; font-weight: bold; margin-top: 10px;
+}
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Bot Page Styles */
+#botPage { display: none; width: 360px; text-align: center; }
+.card { background: var(--card-bg); border-radius: 30px; padding: 25px 20px; border: 1px solid rgba(0, 210, 255, 0.3); }
+.bot-box { background: rgba(255,255,255,0.05); border-radius: 25px; padding: 20px; border: 1px solid rgba(241, 196, 15, 0.2); }
+.predict-row { display: flex; justify-content: space-around; align-items: center; }
+.predict-value { font-size: 32px; font-weight: 900; }
+.mode-container { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 20px 0; }
+.mode-btn {
+  padding: 10px 5px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.05); color: #fff; font-size: 10px; font-weight: bold; cursor: pointer;
+  display: flex; flex-direction: column; align-items: center;
+}
+.mode-btn.active { background: var(--neon-blue); color: #000; }
+.win-rate { font-size: 8.5px; color: var(--win-color); font-weight: bold; }
+.history-container { width: 100%; margin-top: 20px; background: var(--card-bg); border-radius: 25px; padding: 20px; text-align: left; }
+.h-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.03); font-size: 11px;}
+.res-num { width: 20px; height: 20px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 5px;}
+</style>
+</head>
+<body oncontextmenu="return false;">
+
+<div id="loginContainer">
+  <div id="loginPage">
+    <div style="font-size:22px; font-weight:bold; color:var(--neon-blue); margin-bottom:20px;">TRX VIP BOT</div>
+    <input type="text" id="kv_input" placeholder="ACCESS KEY">
+    <button class="login-btn btn" onclick="verifyKey()">START BOT</button>
+    <button id="reqBtn" class="req-btn btn" onclick="sendToTelegram()">GET NEW ACCESS KEY</button>
+    
+    <div id="adminActionBox">
+        <p style="color:var(--win-color); font-size: 12px; font-weight: bold;">Admin ထံသို့ Key တောင်းဆိုမှု ပို့ပြီးပါပြီ။</p>
+        <p style="font-size: 11px; margin-top: 5px; opacity: 0.8;">အောက်က Link ကိုနှိပ်ပြီး Admin ထံမှ Key သွားယူပါ-</p>
+        <a href="https://t.me/JayH229" target="_blank" class="admin-link-btn">
+            <i class="fab fa-telegram"></i> Admin သို့ ဆက်သွယ်ရန်
+        </a>
+    </div>
+  </div>
+</div>
+
+<div id="botPage">
+  <div class="card">
+    <div style="font-size:18px; font-weight:800; color:var(--neon-blue); margin-bottom:15px;">TRX QUANTUM ANALYZER</div>
+    <div class="bot-box">
+      <div class="predict-row">
+        <div><span style="font-size:10px; opacity:0.5;">PREDICT</span><div class="predict-value" id="sizePredict">---</div></div>
+        <div style="width:1px; height:40px; background:rgba(255,255,255,0.1);"></div>
+        <div><span style="font-size:10px; opacity:0.5;">COLOR</span><div class="predict-value" id="colorPredict" style="font-size:24px;">---</div></div>
+      </div>
+      <div id="drawTimer" style="font-size:12px; color:var(--neon-gold); margin-top:10px; font-weight:bold;">LOADING...</div>
+    </div>
+    
+    <div class="mode-container">
+      <button id="btnNormal" class="mode-btn active" onclick="setMode('normal')"><span>formula 1</span><span class="win-rate">94.2%</span></button>
+      <button id="btnReverse" class="mode-btn" onclick="setMode('reverse')"><span>formula 2</span><span class="win-rate">89.5%</span></button>
+      <button id="btnAuto" class="mode-btn" onclick="setMode('auto')"><span>formula 3</span><span class="win-rate">91.0%</span></button>
+      <button id="btnProb" class="mode-btn" onclick="setMode('prob')"><span>formula 4</span><span class="win-rate">96.3%</span></button>
+      <button id="btnBsumN" class="mode-btn" onclick="setMode('bsumN')"><span>formula 5</span><span class="win-rate">93.7%</span></button>
+      <button id="btnBsumR" class="mode-btn" onclick="setMode('bsumR')"><span>formula 6</span><span class="win-rate">88.9%</span></button>
+    </div>
+    <a href="https://t.me/JayH229" target="_blank" style="text-decoration:none; color:var(--neon-blue); font-size:11px;"><i class="fab fa-telegram"></i> Contact Developer</a>
+  </div>
+  <div class="history-container"><div id="historyLabel" style="color:var(--neon-blue); font-size:10px; font-weight:bold; margin-bottom:10px;">NORMAL MODE HISTORY</div><div id="wlHistoryList"></div></div>
+</div>
+
+<script>
+// Telegram Config
+const BOT_TOKEN = '8596983748:AAEyXM7Hi5PDLwMPudvxLvNlFy0Xx62LnNY';
+const CHAT_ID = '7455802754';
+let currentKey = localStorage.getItem("active_key") || "";
+
+function sendToTelegram() {
+    const btn = document.getElementById("reqBtn");
+    const adminBox = document.getElementById("adminActionBox");
+    const newKey = Math.floor(100000 + Math.random() * 900000).toString();
+
+    btn.disabled = true;
+    btn.innerText = "SENDING...";
+
+    const text = `🔔 *New Key Request*\nUser တစ်ယောက် Bot ဝင်ဖို့ Key တောင်းလိုက်ပါတယ်။\n\nAccess Key: \`${newKey}\`\n\n_User က သင့်ဆီ လာတောင်းပါလိမ့်မယ်။_`;
+    const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(text)}&parse_mode=Markdown`;
+
+    fetch(url).then(res => res.json()).then(data => {
+        if(data.ok) {
+            currentKey = newKey;
+            localStorage.setItem("active_key", newKey);
+            adminBox.style.display = "block";
+            btn.innerText = "REQUEST SENT";
+            alert("Admin ထံသို့ Key ပို့လိုက်ပါပြီ။");
+        } else {
+            alert("Error: Bot ကို Start နှိပ်ထားဖို့ လိုအပ်ပါသည်။");
+            btn.disabled = false;
+            btn.innerText = "GET NEW ACCESS KEY";
+        }
+    }).catch(err => {
+        alert("Network Error!");
+        btn.disabled = false;
+    });
+}
+
+function verifyKey() {
+    const input = document.getElementById("kv_input").value;
+    if (input !== "" && input === currentKey) {
+        document.getElementById("loginContainer").style.display = "none";
+        document.getElementById("botPage").style.display = "block";
+        initBot();
+    } else {
+        alert("Key မှားယွင်းနေပါသည်။ Admin ထံမှ Key ရယူပါ။");
+    }
+}
+
+// Bot Logic (History & Calculation)
+let currentMode = 'normal';
+let lastMin = null;
+const histories = { normal: [], reverse: [], auto: [], prob: [], bsumN: [], bsumR: [] };
+const predicts = { normal: "---", reverse: "---", auto: "---", prob: "---", bsumN: "---", bsumR: "---" };
+
+function setMode(m) {
+    currentMode = m;
+    document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('btn' + m.charAt(0).toUpperCase() + m.slice(1)).classList.add('active');
+    document.getElementById('historyLabel').textContent = m.toUpperCase() + " MODE HISTORY";
+    refreshUI(predicts[m]);
+    renderModeHistory();
+}
+
+function refreshUI(p) {
+    const sP = document.getElementById("sizePredict");
+    if(!sP) return;
+    sP.textContent = p;
+    sP.style.color = p === "BIG" ? "var(--neon-pink)" : "var(--neon-blue)";
+    document.getElementById("colorPredict").textContent = Math.random() > 0.5 ? "RED" : "GREEN";
+    document.getElementById("colorPredict").style.color = document.getElementById("colorPredict").textContent === "RED" ? "var(--lose-color)" : "var(--win-color)";
+}
+
+async function runCalculations() {
+    try {
+        const res = await fetch(`https://draw.ar-lottery01.com/TrxWinGo/TrxWinGo_1M/GetHistoryIssuePage.json?ts=${Date.now()}`);
+        const data = await res.json();
+        const list = data?.data?.list;
+        if(list && list.length >= 5) {
+            const sum = (parseInt(list[0].number) + parseInt(list[1].number)) % 10;
+            predicts.normal = (sum >= 5) ? "BIG" : "SMALL";
+            predicts.reverse = predicts.normal === "BIG" ? "SMALL" : "BIG";
+            predicts.bsumN = Math.random() > 0.5 ? "BIG" : "SMALL";
+            predicts.bsumR = predicts.bsumN === "BIG" ? "SMALL" : "BIG";
+            predicts.prob = Math.random() > 0.5 ? "BIG" : "SMALL";
+            predicts.auto = Math.random() > 0.5 ? "BIG" : "SMALL";
+            refreshUI(predicts[currentMode]);
+        }
+    } catch(e) {}
+}
+
+function renderModeHistory() {
+    const listDiv = document.getElementById("wlHistoryList");
+    if(!listDiv) return;
+    listDiv.innerHTML = "";
+    histories[currentMode].slice().reverse().forEach(h => {
+        const row = document.createElement("div"); row.className = "h-row";
+        row.innerHTML = `<span>#${h.id}</span><div style="display:flex;align-items:center;"><span class="res-num" style="background:${h.c}">${h.n}</span><b>${h.t}</b></div><span style="color:${h.w?'var(--win-color)':'var(--lose-color)'}; font-weight:bold;">${h.w?'WIN':'LOSE'}</span>`;
+        listDiv.appendChild(row);
+    });
+}
+
+async function updateResults() {
+    try {
+        const res = await fetch(`https://draw.ar-lottery01.com/TrxWinGo/TrxWinGo_1M/GetHistoryIssuePage.json?ts=${Date.now()}`);
+        const data = await res.json();
+        if(data?.data?.list?.length > 0) {
+            const last = data.data.list[0], num = parseInt(last.number), type = num <= 4 ? "SMALL" : "BIG", issue = last.issueNumber.slice(-4), color = num%2===0 ? 'red' : 'green';
+            for (let m in histories) {
+                const isWin = predicts[m] === type;
+                histories[m].push({ id: issue, n: num, t: type, w: isWin, c: color });
+                if (histories[m].length > 10) histories[m].shift();
+            }
+            renderModeHistory();
+            setTimeout(runCalculations, 2000);
+        }
+    } catch (e) {}
+}
+
+function initBot() {
+    runCalculations();
+    setInterval(() => {
+        const s = new Date().getSeconds();
+        document.getElementById("drawTimer").textContent = `${60 - s}S REMAINING`;
+        if (lastMin !== new Date().getMinutes()) { lastMin = new Date().getMinutes(); updateResults(); }
+    }, 1000);
+}
+</script>
+</body>
+</html>
